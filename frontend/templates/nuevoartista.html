@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+      <div class="container mt-4">
+            <h1 class="mb-3">Agregar Artista</h1>
+            <form action="/artistas/nuevo" method="POST" class="needs-validation" novalidate>
+                  <div class="row">
+                        <div class="col-md-6">
+                              <div class="mb-2">
+                                    <label for="name" class="form-label">Nombre del Artista:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required autofocus>
+                              </div>                        
+                        </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+            <button onclick="window.location.href='/artistas'" class="btn btn-warning mt-2">Volver</button>
+      </div>
+{% endblock main %}

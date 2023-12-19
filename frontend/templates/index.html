@@ -1,8 +1,53 @@
 {% extends 'layout.html' %}
 
 {% block main %}
-      <h1>Bienvenido, {{ username }} a Bolívar Music</h1>
-      <div>
+      <div class="container2 mt-5">
+            <h1>Bolívar Music</h1>
+            <h4>Aquí puedes buscar tu artista para poder visualizar su discografía</h4>
+            <!-- Barra de búsqueda -->
+            <form action="/index/busqueda" method="post" style="width: 100%;">
+                  <div class="input-group mb-3">
+                        <input type="text" name="search_query" class="form-control" placeholder="Buscar artista" style="width: calc(100% - 90px);">
+                        <div class="input-group-append">
+                              <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                  </div>
+            </form>
             
+                  <!-- Contenedor para mostrar los resultados debajo de la barra de búsqueda -->
+                  {% block search_results %}
+                  <div class="accordion" id="artistAccordion">
+                        {% for artist in artistas %}
+                              <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading{{ artist.artistid }}">
+                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse{{ artist.artistid }}" aria-expanded="false"
+                                                aria-controls="collapse{{ artist.artistid }}">
+                                          {{ artist.name }}
+                                          </button>
+                                    </h2>
+                                    <div id="collapse{{ artist.artistid }}" class="accordion-collapse collapse"
+                                    data-bs-parent="#searchResults">
+                                    <div class="accordion-body">
+                                          <!-- Contenido del acordeón -->
+                                          {% for album in artist.albums %}
+                                                <div class="album">
+                                                <h4>{{ album.title }}</h4>
+                                                <ul>
+                                                      {% for track in album.tracks %}
+                                                            <li>{{ track.name }}</li>
+                                                      {% endfor %}
+                                                </ul>
+                                                </div>
+                                          {% endfor %}
+                                    </div>
+                                    </div>
+                              </div>
+                        {% else %}
+                              <!-- Manejar el caso en el que no se encuentren resultados -->
+                              <p>No se encontraron resultados para "{{ search_query }}"</p>
+                        {% endfor %}
+                  {% endblock %}
+            </div>
       </div>
 {% endblock main %}

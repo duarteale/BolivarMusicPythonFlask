@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container mt-4">
+      <h1 class="mb-3">Editar Canción</h1>
+      <form action="/tracks/{{ track.trackid }}" method="POST" class="needs-validation" novalidate>
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                  <div class="col-md-6">
+                        <div class="mb-2">
+                              <label for="name" class="form-label">Nombre de la Pista:</label>
+                              <input type="text" class="form-control" id="name" name="name" value="{{ track.name }}" required autofocus>
+                        </div>
+                        <div class="mb-2">
+                              <label for="composer" class="form-label">Compositor:</label>
+                              <input type="text" class="form-control" id="composer" name="composer" value="{{ track.composer }}" required>
+                        </div>
+                        <div class="mb-2">
+                              <label for="milliseconds" class="form-label">Milisegundos:</label>
+                              <input type="text" class="form-control" id="milliseconds" name="milliseconds" value="{{ track.milliseconds }}" required>
+                        </div>
+                  </div>
+                  <div class="col-md-6">
+                        <div class="mb-2">
+                              <label for="bytes" class="form-label">Bytes:</label>
+                              <input type="text" class="form-control" id="bytes" name="bytes" value="{{ track.bytes }}" required>
+                        </div>
+                        <div class="mb-2">
+                              <label for="unitprice" class="form-label">Precio unitario:</label>
+                              <input type="text" class="form-control" id="unitprice" name="unitprice" value="{{ track.unitprice }}" required>
+                        </div>
+                        <div class="mb-2">
+                              <label for="albumid" class="form-label">ID del Álbum:</label>
+                              <input type="text" class="form-control" id="albumid" name="albumid" value="{{ track.albumid }}" required>
+                        </div>
+                  </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </form>
+      <button onclick="window.location.href='/tracks'" class="btn btn-warning mt-2">Volver</button>
+</div>
+{% endblock main %}

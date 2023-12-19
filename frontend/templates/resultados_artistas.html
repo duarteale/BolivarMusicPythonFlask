@@ -1,0 +1,32 @@
+<div class="accordion" id="accordionExample">
+      <!-- Iterar sobre los resultados de búsqueda y crear cada item del acordeón -->
+      {% for artist in artistas %}
+      <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{ loop.index }}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ loop.index }}" aria-expanded="false"
+                        aria-controls="collapse{{ loop.index }}">
+                        {{ artist.name }}
+                  </button>
+            </h2>
+            <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                        <!-- Contenido del acordeón -->
+                        <h3>{{ artist.name }}</h3>
+                        <!-- Puedes iterar sobre los álbumes y canciones de cada artista aquí -->
+                        {% for album in artist.albums %}
+                        <div class="album">
+                        <h4>{{ album.title }}</h4>
+                        <ul>
+                              {% for track in album.tracks %}
+                              <li>{{ track.name }}</li>
+                              {% endfor %}
+                        </ul>
+                        </div>
+                        {% endfor %}
+                  </div>
+            </div>
+      </div>
+      {% endfor %}
+</div>

@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+      <div class="container mt-4">
+            <h1 class="mb-3">Agregar Álbum</h1>
+            <form action="/albums/nuevo" method="POST" class="needs-validation" novalidate>
+                  <div class="row">
+                        <div class="col-md-6">
+                              <div class="mb-2">
+                                    <label for="title" class="form-label">Título del Álbum:</label>
+                                    <input type="text" class="form-control" id="title" name="title" required autofocus>
+                              </div>                        
+                        </div>
+                        <div class="col-md-6">
+                              <div class="mb-2">
+                                    <label for="artistid" class="form-label">ID del Artista:</label>
+                                    <input type="text" class="form-control" id="artistid" name="artistid" required>
+                              </div>
+                        </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+            <button onclick="window.location.href='/albums'" class="btn btn-warning mt-2">Volver</button>
+      </div>
+{% endblock main %}

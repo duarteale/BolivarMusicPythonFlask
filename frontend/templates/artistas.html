@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container">
+      <h3>Listado de Artistas</h3>   
+      <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="/artistas/nuevo" class="btn btn-success">Agregar Artista</a>
+      
+            <form class="d-flex" method="POST" action="/artistas/buscar">
+                  <input type="text" name="search_query" class="form-control me-2" placeholder="Buscar artista">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+      </div>
+      
+      <table id="tabla-artistas" class="table table-dark table-striped">
+            <tr>            
+                  <th>Nombre</th>
+                  <th>Acciones</th>
+            </tr>
+            
+            {% if artistas %}
+                  {% for artista in artistas %}
+                  <tr>
+                  <td>{{ artista.name }}</td>
+
+                  <td id="botones-container">
+                        <div class="btn-full-width">
+                              <a href="/artistas/{{ artista.artistid }}/editar" class="btn btn-primary">Editar</a>
+                        </div>
+
+                        <div class="btn-full-width">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ artista.artistid }}">
+                              Eliminar
+                        </button>
+                        <div class="modal fade" id="exampleModal{{ artista.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ artista.id }}" aria-hidden="true">
+                              <div class="modal-dialog">
+                                    <div class="modal-content">
+                                          <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel{{ artista.id }}">Eliminar Artista</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                          ¿Está seguro que desea eliminar al artista "{{ artista.name }}"?
+                                          </div>
+                                          <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                                <form action="/artistas/{{ artista.id }}/eliminar" method="POST">
+                                                      <input type="hidden" name="method" value="DELETE">
+                                                      <button type="submit" class="btn btn-dan ">Eliminar</button>
+                                                </form>
+                                          </div>
+                                    </div>
+                              </div>                        
+                        </div>
+                  </td>
+                  </tr>
+                  {% endfor %}
+            {% else %}
+                  <tr>
+                  <td colspan="3">No se encontraron resultados.</td>
+                  </tr>
+            {% endif %}
+      </table>
+</div>
+{% endblock main %}

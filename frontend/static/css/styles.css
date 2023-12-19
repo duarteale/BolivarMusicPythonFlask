@@ -1,1 +1,44 @@
-/*estilos*/
+body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;      
+}
+#loginBack{
+      background:linear-gradient(30deg, crimson, rgb(7, 22, 69), indianred, purple);
+}
+.container2{
+      margin: 30px;
+      background:black;
+      color: rgb(158, 88, 158);
+      border-radius: 20px;
+      padding: 20px;
+}
+.btn-primary{
+      background-color: purple;
+      border-color: rgb(56, 47, 64);
+}
+.btn-primary:hover {
+      background-color: rgb(238, 219, 173);
+      border-color: black; 
+      color: black;
+}
+img{
+      border-radius: 20px;
+}
+.input-group {
+      width: 100%;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+      background-color: purple;
+      color: white;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+      background-color: white;
+      color: black;
+}
+
+.form-control {
+      width: calc(100% - 90px); /* Ajusta el tamaño del input de búsqueda dejando espacio para el botón */
+}
+footer{
+      background:linear-gradient(30deg, crimson, rgb(7, 22, 69), indianred, purple);
+}

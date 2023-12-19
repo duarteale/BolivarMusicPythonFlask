@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container mt-4">
+      <h1 class="mb-3">Editar Artista</h1>
+      <form action="/artistas/{{ artista.artistid }}" method="POST" class="needs-validation" novalidate>
+            <input type="hidden" name="_method" value="PUT">
+            <div class="mb-3">
+                  <label for="name" class="form-label">Nombre del Artista:</label>
+                  <input type="text" class="form-control" id="name" name="name" value="{{ artista.name }}" required autofocus>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </form>
+      <a href="/artistas" class="btn btn-warning mt-2">Volver</a>
+</div>
+{% endblock %}

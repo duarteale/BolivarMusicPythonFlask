@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container">
+      <h3>Listado de Álbumes</h3>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="/albums/nuevo" class="btn btn-success">Agregar Álbum</a>
+
+            <form class="d-flex" method="POST" action="{{ url_for('buscar_albumes') }}">
+                  <input type="text" name="search_query" class="form-control me-2" placeholder="Buscar álbum">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+      </div>
+
+      <table id="tabla-albumes" class="table table-dark table-striped">
+            <tr>
+                  <th>Título</th>
+                  <th>ID del Artista</th>
+                  <th>Acciones</th>
+            </tr>
+
+            {% if albums %}
+                  {% for album in albums %}
+                  <tr>
+                        <td>{{ album.title }}</td>
+                        <td>{{ album.artistid }}</td>
+                        <td id="botones-container">
+                              <div class="btn-full-width">
+                                    <a href="/albums/{{ album.albumid }}/editar" class="btn btn-primary">Editar</a>
+                              </div>
+
+                              <div class="btn-full-width">
+                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{ album.albumid }}">
+                                    Eliminar
+                              </button>
+                              <div class="modal fade" id="exampleModal{{ album.albumid }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel{{ album.albumid }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel{{ album.albumid }}">
+                                                      Eliminar Álbum</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                      aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                                ¿Está seguro de que desea eliminar el álbum "{{ album.title }}"?
+                                          </div>
+                                          <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                      data-bs-dismiss="modal">Cerrar</button>
+                                                <form action="/albums/{{ album.albumid }}/eliminar" method="POST">
+                                                      <input type="hidden" name="method" value="DELETE">
+                                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                </form>
+                                          </div>
+                                          </div>
+                                    </div>
+                              </div>
+                              </div>
+                        </td>
+                  </tr>
+                  {% endfor %}
+            {% else %}
+                  <tr>
+                  <td colspan="3">No se encontraron resultados.</td>
+                  </tr>
+            {% endif %}
+      </table>
+</div>
+{% endblock main %}

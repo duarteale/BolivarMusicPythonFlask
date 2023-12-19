@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container">
+      <h3>Listado de Canciones</h3>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="/tracks/nuevo" class="btn btn-success">Agregar Canción</a>
+      </div>
+      
+      <form class="row g-3" method="POST" action="{{ url_for('filtrar_canciones') }}">
+            <div class="col-md-4">
+                  <label for="nombre" class="form-label">Nombre de la Canción:</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Buscar canción">
+            </div>
+            <div class="col-md-4">
+                  <label for="compositor" class="form-label">Compositor:</label>
+                  <input type="text" class="form-control" id="compositor" name="compositor" placeholder="Buscar compositor">
+            </div>
+            <div class="col-md-3">
+                  <label for="id_album" class="form-label">ID del Álbum:</label>
+                  <input type="text" class="form-control" id="id_album" name="id_album" placeholder="Buscar ID de álbum">
+            </div>
+            <div class="col-md-1 align-self-end">
+                  <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+      </form>
+
+      <table id="tabla-canciones" class="table table-dark table-striped">
+            <tr>
+                  <th>Nombre</th>
+                  <th>Compositor</th>
+                  <th>Álbum ID</th>
+                  <th>Acciones</th>
+            </tr>
+
+            {% if tracks %}
+                  {% for track in tracks %}
+                  <tr>
+                        <td>{{ track.name }}</td>
+                        <td>{{ track.composer }}</td>
+                        <td>{{ track.albumid }}</td>
+                        <td id="botones-container">
+                              <div class="btn-full-width">
+                              <a href="/tracks/{{ track.trackid }}/editar" class="btn btn-primary">Editar</a>
+                              </div>
+
+                              <div class="btn-full-width">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ track.trackid }}">
+                                          Eliminar
+                                    </button>
+                                    <div class="modal fade" id="exampleModal{{ track.trackid }}" tabindex="-1"
+                                          aria-labelledby="exampleModalLabel{{ track.trackid }}" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                      <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel{{ track.trackid }}">Eliminar Canción</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            ¿Está seguro que desea eliminar la canción "{{ track.name }}"?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                                  <form action="/tracks/{{ track.trackid }}" method="POST">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <input type="hidden" name="name" value="delete_track">
+                                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                  </form>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                        </td>
+                  </tr>
+                  {% endfor %}
+            {% else %}
+                  <tr>
+                  <td colspan="4">No se encontraron resultados.</td>
+                  </tr>
+            {% endif %}
+      </table>
+</div>
+{% endblock main %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+      <div class="container mt-4">
+            <h1 class="mb-3">Agregar Canción</h1>
+            <form action="/tracks/nuevo" method="POST" class="needs-validation" novalidate>
+                  <div class="row">
+                        <div class="col-md-6">
+                              <div class="mb-2">
+                                    <label for="name" class="form-label">Nombre de la Canción:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required autofocus>
+                              </div>
+                              <div class="mb-2">
+                                    <label for="composer" class="form-label">Compositor:</label>
+                                    <input type="text" class="form-control" id="composer" name="composer">
+                              </div>
+                              <div class="mb-2">
+                                    <label for="milliseconds" class="form-label">Duración (milisegundos):</label>
+                                    <input type="number" class="form-control" id="milliseconds" name="milliseconds">
+                              </div>
+                              </div>
+                              <div class="col-md-6">
+                              <div class="mb-2">
+                                    <label for="bytes" class="form-label">Tamaño (bytes):</label>
+                                    <input type="number" class="form-control" id="bytes" name="bytes">
+                              </div>
+                              <div class="mb-2">
+                                    <label for="unitprice" class="form-label col-md-12">Precio Unitario:</label>
+                                    <input type="number" step="0.01" class="form-control col-md-12" id="unitprice" name="unitprice">
+                              </div>
+                              <div class="mb-2">
+                                    <label for="albumid" class="form-label">ID del Álbum:</label>
+                                    <input type="number" class="form-control" id="albumid" name="albumid">
+                              </div>
+                        </div>
+                  </div>
+                  <div class="d-flex justify-content-center w-100">
+                        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                  </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                  <button onclick="window.location.href='/tracks'" class="btn btn-warning mt-2">Volver</button>
+            </div>
+      </div>
+{% endblock main %}

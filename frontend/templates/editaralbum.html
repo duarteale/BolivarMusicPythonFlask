@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container mt-4">
+      <h1 class="mb-3">Editar Álbum</h1>
+      <form action="/albums/{{ album.albumid }}" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                  <div class="col-md-6">
+                        <div class="mb-2">
+                              <label for="title" class="form-label">Título del Álbum:</label>
+                              <input type="text" class="form-control" id="title" name="title" value="{{ album.title }}" required autofocus>
+                        </div>
+                        <div class="mb-2">
+                              <label for="artistid" class="form-label">ID del Artista:</label>
+                              <input type="text" class="form-control" id="artistid" name="artistid" value="{{ album.artistid }}" required>
+                        </div>
+                  </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </form>
+      <a href="/albums" class="btn btn-warning mt-2">Volver</a>
+</div>
+{% endblock main %}
