@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+      <h2 class="mb-4">Nuevo Usuario</h2>
+      <form class="d-flex flex-column container2" method="POST" action="/usuarios"> 
+            <div class="d-flex flex-column align-items-center mb-3">
+                  <label for="username">Usuario:</label> 
+                  <input type="text" id="username" name="username" required> 
+            </div>
+            <div class="d-flex flex-column align-items-center mb-3">
+                  <label for="fullname">Nombre Completo:</label> 
+                  <input type="text" id="fullname" name="fullname" required> 
+            </div>
+            <div class="d-flex flex-column align-items-center mb-3">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" required>
+            </div>
+            <div class="d-flex flex-column align-items-center mb-3">
+                  <label for="password">Contraseña:</label>
+                  <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                  <button type="submit" class="btn btn-primary">Crear Usuario</button>
+            </div>
+      </form>
+{% endblock main %}
