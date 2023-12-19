@@ -28,8 +28,8 @@ Asegúrate de tener Python 3.x instalado en tu sistema.
 git clone https://github.com/duarteale/Item1.git
 
 2- Crea un entorno virtual (opcional pero recomendado):
-python -m venv venv
-source venv/bin/activate
+1) python -m venv venv
+2) venv\Scripts\activate.bat
 
 3- Instala las dependencias:
 pip install -r requirements.txt
