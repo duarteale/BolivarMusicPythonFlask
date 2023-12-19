@@ -1,7 +1,7 @@
-#Bolivar Music
+*Bolivar Music
 Bolivar Music es una plataforma web para la gestión de información relacionada con artistas, álbumes y canciones. Este proyecto está diseñado para ayudar a los usuarios a organizar y administrar datos de música, incluyendo detalles sobre artistas, sus álbumes y las canciones asociadas.
 
-##Funcionalidades Principales
+**Funcionalidades Principales
 Gestión de Artistas: Agregar, editar y eliminar información de artistas.
 Administración de Álbumes: Registrar álbumes asociados a los artistas.
 Manejo de Canciones: Mantener un registro de canciones con sus detalles correspondientes.
